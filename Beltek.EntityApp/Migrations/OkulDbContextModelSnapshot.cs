@@ -52,3 +52,4 @@ namespace Beltek.EntityApp.Migrations
         }
     }
 }
+

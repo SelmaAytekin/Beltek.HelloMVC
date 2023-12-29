@@ -1,16 +1,18 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Beltek.HelloMVC.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Beltek.HelloMVC.Models
 {
     public class OkulDbContext:DbContext
     {
         public DbSet<Ogrenci> Ogrenciler { get; set; }
+        public DbSet<Ogretmen> Ogretmenler { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=OkulDBMVC;Integrated Security=true;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Data Source=LAPTOP-08U0FGL1\\SQLEXPRESS01;Initial Catalog=OkulDBMVC;Integrated Security=true;TrustServerCertificate=True");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -22,6 +24,16 @@ namespace Beltek.HelloMVC.Models
             modelBuilder.Entity<Ogrenci>().Property(o => o.Numara).HasColumnType("varchar").HasMaxLength(15).IsRequired();
             modelBuilder.Entity<Ogrenci>().Property(o => o.Bolum).HasColumnType("varchar").HasMaxLength(30).IsRequired();
 
+
+
+            modelBuilder.Entity<Ogretmen>().ToTable("tblOgretmenler");
+
+            modelBuilder.Entity<Ogretmen>().HasKey(o => o.Tckimlik);
+            modelBuilder.Entity<Ogretmen>().Property(o => o.Tckimlik).HasColumnType("varchar").HasMaxLength(11).IsRequired();
+ 
+            modelBuilder.Entity<Ogretmen>().Property(o => o.Ad).HasColumnType("varchar").HasMaxLength(20).IsRequired();
+            modelBuilder.Entity<Ogretmen>().Property(o => o.Soyad).HasColumnType("varchar").HasMaxLength(30).IsRequired();
+            modelBuilder.Entity<Ogretmen>().Property(o => o.Alan).HasColumnType("varchar").HasMaxLength(15).IsRequired();//FluentApi
 
         }
     }

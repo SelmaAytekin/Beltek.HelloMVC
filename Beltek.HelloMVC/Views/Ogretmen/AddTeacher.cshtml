@@ -1,0 +1,36 @@
+﻿@model Ogretmen
+@{
+    ViewData["Title"] = "AddTeacher";
+}
+
+<h1>AddTeacher</h1>
+
+
+<form asp-action="AddTeacher" asp-controller="Ogretmen" method="post">
+
+    <div>
+        <label class="form-label">Tckimlik</label>
+        <input asp-for="Tckimlik" class="form-control" />
+    </div>
+    <div>
+        <label class="form-label">Ad</label>
+        <input asp-for="Ad" class="form-control" />
+    </div>
+
+    <div>
+        <label asp-for="Soyad" class="form-label"></label>
+        <input asp-for="Soyad" class="form-control" />
+    </div>
+
+
+    <div>
+        <label asp-for="Alan" class="form-label"></label>
+        <input asp-for="Alan" class="form-control" />
+    </div><br />
+
+    <input class="btn btn-secondary" type="submit" value="Kaydet" />
+
+
+
+</form>
+
